@@ -1,0 +1,10 @@
+
+# Linter Options
+BasedOnStyle: Google
+IndentWidth: 4
+ColumnLimit: 120
+AlignConsecutiveMacros: AcrossEmptyLines
+AlignConsecutiveAssignments: true
+BreakBeforeTernaryOperators: false
+InsertNewlineAtEOF: true
+MaxEmptyLinesToKeep: 2
