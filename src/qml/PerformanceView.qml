@@ -31,6 +31,12 @@ Item {
     PdfDocument {
         id: pdfDocument
         source: ""
+
+        onStatusChanged: {
+            if (status === PdfDocument.Ready && root.currentItemType === 0) {
+                root.showCurrentPdfPage()
+            }
+        }
     }
 
     PdfPageView {
@@ -84,17 +90,22 @@ Item {
         currentPage = item.page
 
         if (currentItemType === 0) {
-            pdfDocument.source = currentSource
-
-            /*
-             * Wait until PdfDocument has processed the
-             * source before selecting the page.
-             */
-            Qt.callLater(function() {
+            if (pdfDocument.source !== currentSource) {
+                // New PDF: load it, page will be set afterwards
                 pdfView.goToPage(currentPage)
-                fitPdfPage()
-            })
+                pdfDocument.source = currentSource
+            } else {
+                // Same PDF: go to page
+                showCurrentPdfPage()
+            }
         }
+    }
+
+    function showCurrentPdfPage() {
+        Qt.callLater(function() {
+            pdfView.goToPage(currentPage)
+            fitPdfPage()
+        })
     }
 
     function fitPdfPage() {
