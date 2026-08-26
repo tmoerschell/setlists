@@ -81,10 +81,14 @@ Page {
         }
     }
 
+    property url lastFolder: ""
+
     FileDialog {
         id: fileDialog
         title: "Add files to setlist"
         fileMode: FileDialog.OpenFiles
+
+        currentFolder: root.lastFolder
 
         nameFilters: [
             "PDF and images (*.pdf *.png *.jpg *.jpeg *.webp *.bmp *.gif)",
