@@ -165,6 +165,12 @@ Item {
         }
     }
 
+    /**
+     * Re-fit the PDF if the view size changed
+     */
+    onWidthChanged: fitPdfPage()
+    onHeightChanged: fitPdfPage()
+
     /*
      * Tap the left half for previous, right half for next.
      */
