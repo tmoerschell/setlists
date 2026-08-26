@@ -17,6 +17,10 @@ find_package(Qt6 6.8 REQUIRED COMPONENTS
     Widgets
 )
 
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    find_package(KF6GuiAddons 6.23 REQUIRED)
+endif()
+
 qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(setlists
@@ -36,6 +40,8 @@ qt_add_qml_module(setlists
     SOURCES
         src/setlistmodel.cpp
         src/setlistmodel.hpp
+        src/sleepinhibitor.cpp
+        src/sleepinhibitor.hpp
 )
 
 target_link_libraries(setlists
@@ -46,6 +52,17 @@ target_link_libraries(setlists
         Qt6::QuickControls2
         Qt6::Pdf
         Qt6::Widgets
+)
+
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    target_link_libraries(setlists
+        PRIVATE
+            KF6::GuiAddons
+    )
+endif()
+
+target_include_directories(setlists PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
 set_target_properties(setlists PROPERTIES

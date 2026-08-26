@@ -337,4 +337,8 @@ Item {
             NumberAnimation { duration: 250 }
         }
     }
+
+    SleepInhibitor {
+        active: root.visible
+    }
 }
