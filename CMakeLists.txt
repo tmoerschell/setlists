@@ -14,6 +14,7 @@ find_package(Qt6 6.8 REQUIRED COMPONENTS
     Quick
     QuickControls2
     Pdf
+    Widgets
 )
 
 qt_standard_project_setup(REQUIRES 6.8)
@@ -44,6 +45,7 @@ target_link_libraries(setlists
         Qt6::Quick
         Qt6::QuickControls2
         Qt6::Pdf
+        Qt6::Widgets
 )
 
 set_target_properties(setlists PROPERTIES
